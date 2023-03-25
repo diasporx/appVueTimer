@@ -1,10 +1,6 @@
 <template>
   <section>
-    <div class="container">
-      <div class="row">
         <Timer />
-      </div>
-    </div>
   </section>
 </template>
 

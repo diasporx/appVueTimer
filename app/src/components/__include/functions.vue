@@ -16,26 +16,26 @@ export default {
             stopwatch.status = 'paused';
         },
         resetStopwatch(stopwatch) {
-            stopwatch.time = 0;
             stopwatch.status = 'paused';
+            setInterval(() => {
+                stopwatch.time = 0;
+            }, 1)
         },
         addStopwatch() {
-            this.stopwatches.push({ time: 0, status: 'paused' });
+            this.stopwatches.push({
+                id: this.nextId,
+                time: 0,
+                status: 'paused'
+            });
+            this.nextId++;
         },
         formatTime(time) {
             const seconds = Math.floor(time / 1000) % 60;
             const minutes = Math.floor(time / (1000 * 60)) % 60;
             const hours = Math.floor(time / (1000 * 60 * 60));
-
             let formattedTime = `${seconds}`;
-
-            if (minutes > 0) {
-                formattedTime = `${minutes}:${formattedTime}`;
-            }
-
-            if (hours > 0) {
-                formattedTime = `${hours}:${formattedTime}`;
-            }
+            if (minutes > 0) formattedTime = `${minutes}:${formattedTime}`;
+            if (hours > 0) formattedTime = `${hours}:${formattedTime}`;
 
             return formattedTime;
         },
