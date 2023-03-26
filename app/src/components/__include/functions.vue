@@ -33,12 +33,18 @@ export default {
             const seconds = Math.floor(time / 1000) % 60;
             const minutes = Math.floor(time / (1000 * 60)) % 60;
             const hours = Math.floor(time / (1000 * 60 * 60));
-            let formattedTime = `${seconds}`;
-            if (minutes > 0) formattedTime = `${minutes}:${formattedTime}`;
-            if (hours > 0) formattedTime = `${hours}:${formattedTime}`;
+
+            let formattedTime = `${seconds < 10 ? '0' : ''}${seconds}`;
+
+            if (hours > 0) {
+                formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${formattedTime}`;
+                formattedTime = `${hours}:${formattedTime}`;
+            } else if (minutes > 0) {
+                formattedTime = `${minutes}:${formattedTime}`;
+            }
 
             return formattedTime;
-        },
+        }
 
     }
 
